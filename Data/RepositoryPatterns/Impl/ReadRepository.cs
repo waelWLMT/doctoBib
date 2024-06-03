@@ -8,10 +8,24 @@ using System.Threading.Tasks;
 
 namespace Data.RepositoryPatterns.Impl
 {
+    /// <summary>
+    /// The read repository.
+    /// </summary>
+    /// <typeparam name="T"/>
     public class ReadRepository<T> : IReadRepository<T> where T : class
     {
-        protected readonly MyDbContext _dbContext;    
+        /// <summary>
+        /// The db context.
+        /// </summary>
+        protected readonly MyDbContext _dbContext;
+        /// <summary>
+        /// The db set.
+        /// </summary>
         protected readonly DbSet<T> _dbSet;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ReadRepository"/> class.
+        /// </summary>
+        /// <param name="mydbContext">The mydb context.</param>
         public ReadRepository(MyDbContext mydbContext)
         {
             _dbContext = mydbContext;
@@ -27,6 +41,10 @@ namespace Data.RepositoryPatterns.Impl
            
         }
 
+        /// <summary>
+        /// Get the all.
+        /// </summary>
+        /// <returns><![CDATA[List<T>]]></returns>
         public virtual List<T> GetAll()
         {
             return _dbSet.ToList();

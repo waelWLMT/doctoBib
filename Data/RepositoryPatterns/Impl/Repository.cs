@@ -7,11 +7,25 @@ using System.Threading.Tasks;
 
 namespace Data.RepositoryPatterns.Impl
 {
+    /// <summary>
+    /// The repository.
+    /// </summary>
+    /// <typeparam name="T"/>
     public class Repository<T> : IRepository<T> where T : class
     {
+        /// <summary>
+        /// The db context.
+        /// </summary>
         protected readonly MyDbContext _dbContext;
+        /// <summary>
+        /// The db set.
+        /// </summary>
         protected readonly DbSet<T> _dbSet;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Repository"/> class.
+        /// </summary>
+        /// <param name="dbContext">The db context.</param>
         public Repository(MyDbContext dbContext)
         {
             _dbContext = dbContext;
@@ -24,6 +38,11 @@ namespace Data.RepositoryPatterns.Impl
 
             _dbSet.Remove(entity);
         }
+        /// <summary>
+        /// Deletes the all.
+        /// </summary>
+        /// <param name="entities">The entities.</param>
+        /// <exception cref="ArgumentNullException"></exception>
         public void DeleteAll(List<T> entities)
         {
             if (entities == null || !entities.Any())
@@ -38,6 +57,10 @@ namespace Data.RepositoryPatterns.Impl
             _dbSet.Add(entity);
 
         }
+        /// <summary>
+        /// Inserts the all.
+        /// </summary>
+        /// <param name="entities">The entities.</param>
         public void InsertAll(List<T> entities)
         {
             _dbSet.AddRange(entities);

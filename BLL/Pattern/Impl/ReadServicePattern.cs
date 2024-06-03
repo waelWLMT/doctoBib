@@ -8,24 +8,50 @@ using System.Threading.Tasks;
 
 namespace BLL.Pattern.Impl
 {
+    /// <summary>
+    /// The read service pattern.
+    /// </summary>
+    /// <typeparam name="T"/>
     public class ReadServicePattern<T> : IReadServicePattern<T> where T : class
     {
+        /// <summary>
+        /// The read repository.
+        /// </summary>
         private readonly IReadRepository<T> _readRepository;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ReadServicePattern"/> class.
+        /// </summary>
+        /// <param name="readRepository">The read repository.</param>
         public ReadServicePattern(IReadRepository<T> readRepository)
         {
             _readRepository = readRepository;
         }
+        /// <summary>
+        /// Get the all.
+        /// </summary>
+        /// <returns><![CDATA[List<T>]]></returns>
         public List<T> GetAll()
         {
             return _readRepository.GetAll();
         }
 
+        /// <summary>
+        /// Get the all by generci filter and list of includes.
+        /// </summary>
+        /// <param name="predicate">The predicate.</param>
+        /// <param name="includes">The includes.</param>
+        /// <returns><![CDATA[List<T>]]></returns>
         public List<T> GetAll(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includes)
         {
             return _readRepository.FindBy(predicate, includes);
         }
 
+        /// <summary>
+        /// Get by id.
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <returns>A T</returns>
         public T GetById(object id)
         {
             return _readRepository.Get(id);

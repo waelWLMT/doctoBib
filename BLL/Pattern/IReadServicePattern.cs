@@ -10,14 +10,7 @@ namespace BLL.Pattern
     public interface IReadServicePattern<T>  where T : class
     {
         T GetById(object id);
-        List<T> GetAll();
-        /// <summary>
-        /// predicate est le filtre de la requete
-        /// includes est la liste des proprieté à selectionner dans la requete
-        /// </summary>
-        /// <param name="predicate"></param>
-        /// <param name="includes"></param>
-        /// <returns></returns>
+        List<T> GetAll();       
         List<T> GetAll(Expression <Func<T, bool>> predicate, params Expression<Func<T, object>>[] includes);
 
     }
