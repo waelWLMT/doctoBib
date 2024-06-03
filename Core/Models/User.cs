@@ -25,9 +25,9 @@ namespace Core.Models
         /// </summary>
         public string Login { get; set; }
         /// <summary>
-        /// Gets or sets the password.
+        /// Gets or sets the cryptedPassword.
         /// </summary>
-        public string Password { get; set; }
+        public string CryptedPassword { get; set; }
         /// <summary>
         /// Gets or sets the mail adress.
         /// </summary>
