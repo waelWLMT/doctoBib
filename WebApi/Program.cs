@@ -2,8 +2,6 @@ using Root;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-
 // Add services to the container.
 CompositionRoot.InjectDependencies(builder.Services, builder.Configuration.GetConnectionString("doctoDbCnx"));
 

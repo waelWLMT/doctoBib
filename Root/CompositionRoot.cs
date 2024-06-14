@@ -60,12 +60,15 @@ namespace Root
 
             services.AddScoped<IUserReadService, UserReadService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<HttpClient, HttpClient>();
+            services.AddScoped<ICommuneService, CommuneService>();
 
             services.AddScoped<IAuthenticationService, AuthenticationService>();
 
             #endregion
 
             #region others injection
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             #endregion
 
         }

@@ -18,14 +18,7 @@ namespace BLL.Services.Usefull.Impl
 
         public object Authenticate(string username, string password)
         {
-            var user = _userReadService.GetAll(x=> x.Login == username, y=> y.Role).FirstOrDefault();
-            if (user == null)
-            {
-                return null;
-            }
-            return user;
-            // to be continued
-           
+            return _userReadService.GetAll(x=> x.Login == username).FirstOrDefault();  
         }
     }
 }
