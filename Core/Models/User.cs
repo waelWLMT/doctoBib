@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Security.Principal;
 using System.Text;
@@ -7,40 +8,49 @@ using System.Threading.Tasks;
 
 namespace Core.Models
 {
+
     /// <summary>
     /// The user.
     /// </summary>
     public class User : BaseEntity
     {
+        #region Propeties
+        
         /// <summary>
-        /// Gets or sets the last name.
+        /// Gets or sets the nom.
         /// </summary>
-        public string LastName { get; set; }
+        public string Nom { get; set; }
         /// <summary>
-        /// Gets or sets the first name.
+        /// Gets or sets the prenom.
         /// </summary>
-        public string FirstName { get; set; }
+        public string Prenom { get; set; }
         /// <summary>
         /// Gets or sets the login.
         /// </summary>
         public string Login { get; set; }
         /// <summary>
-        /// Gets or sets the cryptedPassword.
+        /// Gets or sets the crypted password.
         /// </summary>
         public string CryptedPassword { get; set; }
         /// <summary>
         /// Gets or sets the mail adress.
         /// </summary>
         public string MailAdress { get; set; }
-
         /// <summary>
-        /// Gets or sets the role id.
+        /// Gets or sets the tel.
         /// </summary>
-        public int RoleId { get; set; }
+        public string Tel { get; set; }
 
-        /// <summary>
-        /// Gets or sets the role.
-        /// </summary>
-        public virtual Role Role { get; set; }
+        #endregion
+
+        #region Navigation properties      
+
+        [ForeignKey(nameof(Adresse))]
+        public int AdresseId { get; set; }
+        public virtual Adresse Adresse { get; set; }
+        public virtual List<Menu> Menus { get; set; }
+
+        #endregion
+
     }
 }

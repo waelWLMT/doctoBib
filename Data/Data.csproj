@@ -17,8 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Configurations\" />
     <Folder Include="Conventions\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
   <ItemGroup>

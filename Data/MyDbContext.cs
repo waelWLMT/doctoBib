@@ -1,5 +1,6 @@
 ﻿
 using Core.Models;
+using Data.Configurations;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,32 +11,32 @@ using System.Threading.Tasks;
 
 namespace Data
 {
-    /// <summary>
-    /// The my db context.
-    /// </summary>
+    
     public class MyDbContext : DbContext
     {
-        /// <summary>
-        /// Gets or sets the users.
-        /// </summary>
+       
         public DbSet<User> Users { get; set; }
-        /// <summary>
-        /// Gets or sets the roles.
-        /// </summary>
         public DbSet<Role> Roles { get; set; }
+        public DbSet<Menu> Menus { get; set; }
+        public DbSet<Praticien> Praticiens { get; set; }
+        public DbSet<Patient> Patients { get; set; }
+        public DbSet<Adresse> Adresses { get; set; }
+        public DbSet<Ville> Villes { get; set; }
+        public DbSet<Departement> Departements { get; set; }
+        public DbSet<Specialite> Specialites { get; set; }
+        public DbSet<Motif> Motifs { get; set; }
+        public DbSet<Calendrier> Calendriers { get; set; }
+        public DbSet<RendezVous> Appointements { get; set; } 
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MyDbContext"/> class.
-        /// </summary>
-        /// <param name="options">The options.</param>
         public MyDbContext(DbContextOptions<MyDbContext> options) : base(options)
         { }
-        /// <summary>
-        /// On model creating.
-        /// </summary>
-        /// <param name="modelBuilder">The model builder.</param>
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            modelBuilder.ApplyConfiguration(new AdresseConfiguration());
+            modelBuilder.ApplyConfiguration(new AppointementConfiguration());  // Rendez vous
+
             // Menu Role Configurations
             // modelBuilder.ApplyConfiguration(new RoleMenuConfigurations());           
 

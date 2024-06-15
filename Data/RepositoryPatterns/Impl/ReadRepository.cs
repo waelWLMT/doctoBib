@@ -56,9 +56,9 @@ namespace Data.RepositoryPatterns.Impl
         /// includes est la liste des propriete à inclure avec l'entité recherchée  ( autrement dit c'est le filtre)
         /// un simple expemle d'utilisation de cette methode ==> userRepository.FindBy(x=> x.username == username, x.Roles);
         /// </summary>
-        /// <param name="predicate"></param>
-        /// <param name="includes"></param>
-        /// <returns></returns>
+        /// <param name="predicate">The predicate.</param>
+        /// <param name="includes">The includes.</param>
+        /// <returns><![CDATA[List<T>]]></returns>
         public List<T> FindBy(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includes)
         {
             var query = _dbSet.AsQueryable().Where(predicate);

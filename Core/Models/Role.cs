@@ -1,23 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Core.Models
 {
-    /// <summary>
-    /// The role.
-    /// </summary>
     public class Role : BaseEntity
     {
-        /// <summary>
-        /// Gets or sets the libelle.
-        /// </summary>
+        #region Properties
         public string Libelle { get; set; }
-        /// <summary>
-        /// Gets or sets the description.
-        /// </summary>
-        public string Description { get; set; }
+        public string Description { get; set; }        
+
+        #endregion
+
+
+        #region Navigation Properties
+        public virtual List<Menu> Menus { get; set; }
+
+        #endregion
     }
 }
