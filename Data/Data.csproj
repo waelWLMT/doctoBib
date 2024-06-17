@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <Folder Include="Conventions\" />
-    <Folder Include="Migrations\" />
   </ItemGroup>
 
   <ItemGroup>

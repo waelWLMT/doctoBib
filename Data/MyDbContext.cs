@@ -33,13 +33,8 @@ namespace Data
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             modelBuilder.ApplyConfiguration(new AdresseConfiguration());
-            modelBuilder.ApplyConfiguration(new AppointementConfiguration());  // Rendez vous
-
-            // Menu Role Configurations
-            // modelBuilder.ApplyConfiguration(new RoleMenuConfigurations());           
-
+            modelBuilder.ApplyConfiguration(new AppointementConfiguration());  // Rendez vous  
         }
     }
 }

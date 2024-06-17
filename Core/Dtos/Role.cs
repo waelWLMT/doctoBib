@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Models
+namespace Core.Dtos
 {
-    public class Role : BaseEntity
+    public class RoleReadDto : BaseEntityReadDto
     {
+
         #region Properties
         public string Libelle { get; set; }
         public string Description { get; set; }
@@ -18,7 +19,7 @@ namespace Core.Models
 
 
         #region Navigation Properties
-        public virtual List<Menu> Menus { get; set; }
+        public virtual List<MenuReadDto> Menus { get; set; }
 
         #endregion
     }
