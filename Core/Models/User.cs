@@ -51,6 +51,5 @@ namespace Core.Models
         public virtual List<Menu> Menus { get; set; }
 
         #endregion
-
     }
 }

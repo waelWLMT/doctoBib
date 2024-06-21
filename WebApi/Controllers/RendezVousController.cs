@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Core.Dtos;
+using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
@@ -7,15 +10,25 @@ namespace WebApi.Controllers
     [ApiController]
     public class RendezVousController : ControllerBase
     {
-        public RendezVousController()
+        private readonly IMediator _mediator;
+        private readonly IMapper _mapper;
+
+        public RendezVousController(IMediator mediator, IMapper mapper)
         {
-            
+            _mediator = mediator;
+            _mapper = mapper;
         }
 
-
+        [HttpGet("GetAllRendezVous")]
         public List<RendezVousReadDto> GetAllRendezVous()
         {
+            return new List<RendezVousReadDto>();
+        }
 
+        [HttpGet]
+        public List<object> GetAll()
+        {
+            throw new NotImplementedException();
         }
 
     }

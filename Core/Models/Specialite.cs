@@ -11,7 +11,6 @@ namespace Core.Models
     /// </summary>
     public class Specialite : BaseEntity
     {
-
         #region Properties
         /// <summary>
         /// Gets or sets the libelle.
@@ -36,6 +35,5 @@ namespace Core.Models
         public virtual List<Praticien> Praticiens { get; set; }
 
         #endregion
-
     }
 }

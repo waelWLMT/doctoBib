@@ -16,12 +16,12 @@ namespace WebApi.Controllers
         /// <summary>
         /// The commune service.
         /// </summary>
-        private readonly ICommuneService _communeService;
+        private readonly ICommuneReadService _communeService;
         /// <summary>
         /// Initializes a new instance of the <see cref="CommuneController"/> class.
         /// </summary>
         /// <param name="communeService">The commune service.</param>
-        public CommuneController(ICommuneService communeService)
+        public CommuneController(ICommuneReadService communeService)
         {
             _communeService = communeService;
         }

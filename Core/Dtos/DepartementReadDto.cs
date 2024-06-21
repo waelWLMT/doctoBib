@@ -20,4 +20,7 @@ namespace Core.Dtos
         /// </summary>
         public string CodeDepartement { get; set; }
     }
+
+
+
 }

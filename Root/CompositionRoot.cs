@@ -47,28 +47,82 @@ namespace Root
 
             #endregion
 
-            #region repositories injection
+            #region Read repositories injection
 
             services.AddScoped<IUserReadRepository, UserReadRepository>();
+            services.AddScoped<IAdresseReadRepository, AdresseReadRepository>();    
+
+            services.AddScoped<ICalendrierReadRepository, CalendrierReadRepository>();
+            services.AddScoped<IDepartementReadRepository, DepartementReadRepository>();
+
+            services.AddScoped<IMenuReadRepository, MenuReadRepository>();
+            services.AddScoped<IMotifReadRepository, MotifReadRepository>();
+
+            services.AddScoped<IPatientReadRepository, PatientReadRepository>();
+            services.AddScoped<IPraticienReadRepository, PraticienReadRepository>();
+
+            services.AddScoped<IRoleReadRepository, RoleReadRepository>();
+            services.AddScoped<ISpecialiteReadRepository, SpecialiteReadRepository>();
+
+            
+            #endregion
+
+            #region Write repositories
+
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IAdresseRepository, AdresseRepository>();
+
+            services.AddScoped<ICalendrierRepository, CalendrierRepository>();
+            services.AddScoped<IPatientRepository, PatientRepository>();
+
+            services.AddScoped<IPraticienRepository, PraticienRepository>();
+            services.AddScoped<IRendezVousRepository, RendezVousRepository>();
 
             #endregion
 
-
-
-            #region services injection
+            #region Read services injection
 
             services.AddScoped<IUserReadService, UserReadService>();
-            services.AddScoped<IUserService, UserService>();
-            services.AddScoped<HttpClient, HttpClient>();
-            services.AddScoped<ICommuneService, CommuneService>();
 
-            services.AddScoped<IAuthenticationService, AuthenticationService>();
+            services.AddScoped<IAdresseReadService, AdresseReadService>();
+            services.AddScoped<ICalendrierReadService, CalendrierReadService>();
+
+            services.AddScoped<IDepartementReadService, DepartementReadService>();
+            services.AddScoped<IMenuReadService, MenuReadService>();
+
+            services.AddScoped<IMotifReadService, MotifReadService>();
+            services.AddScoped<IPatientReadService, PatientReadService>();
+
+            services.AddScoped<IPraticienReadService, PraticienReadService>();
+            services.AddScoped<ISpecialiteReadService, SpecialiteReadService>();
+
+            services.AddScoped<ICommuneReadService, CommuneReadService>();
+
+
+            #endregion
+
+            #region Write services injection
+
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IAdresseService, AdresseService>();
+
+            services.AddScoped<ICalendrierService, CalendrierService>();
+            services.AddScoped<IPatientService, PatientService>();
+
+            services.AddScoped<IPraticienService, PraticienService>();
+            services.AddScoped<IRendezVousService, RendezVousService>();
+
 
             #endregion
 
             #region others injection
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            services.AddScoped<HttpClient, HttpClient>();
+            
+
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
+
             #endregion
 
         }

@@ -14,9 +14,9 @@ using System.Threading.Tasks;
 namespace BLL.Services.ReadServices.Impl
 {
     /// <summary>
-    /// The commune service.
+    /// The commune read service.
     /// </summary>
-    public class CommuneService : ICommuneService
+    public class CommuneReadService : ICommuneReadService
     {
 
         #region attributes
@@ -33,11 +33,11 @@ namespace BLL.Services.ReadServices.Impl
         #region constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CommuneService"/> class.
+        /// Initializes a new instance of the <see cref="CommuneReadService"/> class.
         /// </summary>
         /// <param name="configuration">The configuration.</param>
         /// <param name="httpClient">The http client.</param>
-        public CommuneService(IConfiguration configuration, HttpClient httpClient)
+        public CommuneReadService(IConfiguration configuration, HttpClient httpClient)
         {
             _configuration = configuration;
             _httpClient = httpClient;

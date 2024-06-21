@@ -47,7 +47,7 @@ namespace Core.Models
 
         #endregion
 
-        #region Navigation Properties
+        #region Navigation properties
 
         /// <summary>
         /// Gets or sets the departement id.

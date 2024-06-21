@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BLL.Services.ReadServices
 {
-    public interface ICommuneService
+    public interface ICommuneReadService
     {
         Task<object> GetAllCommune();
         Task<object> GetCommuneByCodePostal(string codePostal);

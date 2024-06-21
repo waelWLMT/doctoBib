@@ -16,7 +16,6 @@ namespace Core.Models
 
         #endregion
 
-
         #region Navigation Properties
         public virtual List<Menu> Menus { get; set; }
 

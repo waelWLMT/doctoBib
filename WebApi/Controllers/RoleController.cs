@@ -27,5 +27,9 @@ namespace WebApi.Controllers
             var result = _mapper.Map<List<Role>>(roles);
 
             return result;
+        }
+
+
+
     }
 }
