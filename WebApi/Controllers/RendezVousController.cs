@@ -26,6 +26,7 @@ namespace WebApi.Controllers
             var request = new GetCurrentWeekRdvsRequest()
             {
                 IdPraticien = idPraticien
+                
             };
 
             var rdvs = await _mediator.Send(request);
@@ -41,7 +42,9 @@ namespace WebApi.Controllers
         {
             var request = new GetAllRdvPraticienByDatesRequest()
             {
-                IdPraticien = idPraticien
+                IdPraticien = idPraticien,
+                DateDebut = dateDebut,
+                DateFin = dateFin                
             };
 
             var rdvs = await _mediator.Send(request);
