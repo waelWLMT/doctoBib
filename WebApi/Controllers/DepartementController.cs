@@ -18,11 +18,5 @@ namespace WebApi.Controllers
             _mediator = mediator;
         }
 
-
-        [HttpGet]
-        public List<object> GetAll()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

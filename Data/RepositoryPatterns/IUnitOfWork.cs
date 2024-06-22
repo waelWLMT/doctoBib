@@ -10,5 +10,8 @@ namespace Data.RepositoryPatterns
     {
         void Commit();
         void Rollback();
+
+        void CommitAsync();
+        void RollbackAsync();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BLL.UseCases.Queries.RendezVousQueries;
 using Core.Dtos;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -19,16 +20,35 @@ namespace WebApi.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("GetAllRendezVous")]
-        public List<RendezVousReadDto> GetAllRendezVous()
+        [HttpGet("GetCurrentWeekRdvs")]
+        public async Task<List<RendezVousReadDto>> GetCurrentWeekRdvs(int idPraticien)
         {
-            return new List<RendezVousReadDto>();
+            var request = new GetCurrentWeekRdvsRequest()
+            {
+                IdPraticien = idPraticien
+            };
+
+            var rdvs = await _mediator.Send(request);
+
+            var result = _mapper.Map<List<RendezVousReadDto>>(rdvs);
+
+            return result;
         }
 
-        [HttpGet]
-        public List<object> GetAll()
+
+        [HttpGet("GetAllRdvPraticienByDates")]
+        public async Task<List<RendezVousReadDto>> GetAllRdvPraticienByDates(int idPraticien, DateTime dateDebut,DateTime dateFin)
         {
-            throw new NotImplementedException();
+            var request = new GetAllRdvPraticienByDatesRequest()
+            {
+                IdPraticien = idPraticien
+            };
+
+            var rdvs = await _mediator.Send(request);
+
+            var result = _mapper.Map<List<RendezVousReadDto>>(rdvs);
+
+            return result;
         }
 
     }

@@ -116,12 +116,11 @@ namespace Root
             #endregion
 
             #region others injection
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-
-            services.AddScoped<HttpClient, HttpClient>();
-            
-
+            services.AddScoped<HttpClient, HttpClient>(); 
             services.AddScoped<IAuthenticationService, AuthenticationService>();
+            services.AddScoped<ICalendrierBuilder,  CalendrierBuilder>();
 
             #endregion
 

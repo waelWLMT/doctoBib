@@ -27,6 +27,9 @@ namespace BLL.Pattern.Impl
         {
             _readRepository = readRepository;
         }
+
+        #region Synchronous
+
         /// <summary>
         /// Get the all.
         /// </summary>
@@ -56,5 +59,43 @@ namespace BLL.Pattern.Impl
         {
             return _readRepository.Get(id);
         }
+
+        #endregion
+
+        #region Asynchronous
+
+        /// <summary>
+        /// Get by id asynchronously.
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <returns><![CDATA[Task<T>]]></returns>
+        public async Task<T> GetByIdAsync(object id)
+        {
+            return await _readRepository.GetAsync(id);
+        }
+
+        /// <summary>
+        /// Get the all asynchronously.
+        /// </summary>
+        /// <returns><![CDATA[Task<List<T>>]]></returns>
+        public async Task<List<T>> GetAllAsync()
+        {
+            return await _readRepository.GetAllAsync();
+        }
+
+        /// <summary>
+        /// Get the all asynchronously.
+        /// </summary>
+        /// <param name="predicate">The predicate.</param>
+        /// <param name="includes">The includes.</param>
+        /// <returns><![CDATA[Task<List<T>>]]></returns>
+        public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includes)
+        {
+            return await _readRepository.FindByAsync(predicate, includes);
+        }
+
+
+        #endregion
+
     }
 }

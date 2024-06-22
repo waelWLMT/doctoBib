@@ -32,6 +32,8 @@ namespace Data.RepositoryPatterns.Impl
             _dbSet = _dbContext.Set<T>();
         }
 
+
+        #region Synchronous
         public virtual T Get(object id)
         {
             if (id == null)
@@ -50,7 +52,6 @@ namespace Data.RepositoryPatterns.Impl
             return _dbSet.ToList();
         }
 
-
         /// <summary>
         /// predicate est l'expression de la condition where
         /// includes est la liste des propriete à inclure avec l'entité recherchée  ( autrement dit c'est le filtre)
@@ -65,6 +66,50 @@ namespace Data.RepositoryPatterns.Impl
 
             return includes.Aggregate(query, (current, includeProperty) => current.Include(includeProperty)).ToList();
         }
+
+
+
+        #endregion
+
+        #region Asynchronous
+        /// <summary>
+        /// Get the all asynchronously.
+        /// </summary>
+        /// <returns><![CDATA[Task<List<T>>]]></returns>
+        public async Task<List<T>> GetAllAsync()
+        {
+            return await _dbSet.ToListAsync();
+        }
+
+        /// <summary>
+        /// Get and return a task of type t asynchronously.
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <returns><![CDATA[Task<T>]]></returns>
+        public async Task<T> GetAsync(object id)
+        {
+            return id != null
+                ? await _dbSet.FindAsync(id)
+                : null;       
+        }
+
+        /// <summary>
+        /// Find the by asynchronously.
+        /// </summary>
+        /// <param name="predicate">The predicate.</param>
+        /// <param name="includes">The includes.</param>
+        /// <returns><![CDATA[Task<List<T>>]]></returns>
+        public Task<List<T>> FindByAsync(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includes)
+        {
+            var query = _dbSet.AsQueryable().Where(predicate);
+
+            return includes
+                .Aggregate(query, (current, includeProperty) => current.Include(includeProperty))
+                .ToListAsync();
+        }
+
+        #endregion
+
 
     }
 }

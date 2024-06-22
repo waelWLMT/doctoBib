@@ -1,4 +1,7 @@
 ﻿using AutoMapper;
+using BLL.UseCases.Queries.PatientQueries;
+using BLL.UseCases.Queries.PraticienQueries;
+using Core.Dtos;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -18,10 +21,15 @@ namespace WebApi.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
-        public List<object> GetAll()
+        [HttpGet("GetAllPatient")]
+        public async Task<List<PatientReadDto>> GetAllPatien()
         {
-            throw new NotImplementedException();
+            var patients = await _mediator.Send(new GetAllPatientRequest());
+            var result = _mapper.Map<List<PatientReadDto>>(patients);
+
+            return result;
         }
+
+
     }
 }

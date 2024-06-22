@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using BLL.UseCases.Queries.SepcialiteQueries;
+using Core.Dtos;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -18,10 +20,16 @@ namespace WebApi.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
-        public List<object> GetAll()
+       
+        [HttpGet("GetAllSpecialite")]
+        public async Task<List<SpecialiteReadDto>> GetAllSpecialite()
         {
-            throw new NotImplementedException();
+            var request = new GetAllSpecialiteRequest();
+            var specialites = await _mediator.Send(request);
+
+            var result = _mapper.Map<List<SpecialiteReadDto>>(specialites);
+
+            return result;
         }
     }
 }

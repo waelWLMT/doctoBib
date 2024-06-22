@@ -6,15 +6,18 @@ using System.Threading.Tasks;
 
 namespace Data.RepositoryPatterns.Impl
 {
+
     /// <summary>
     /// The unit of work.
     /// </summary>
     public class UnitOfWork : IUnitOfWork
     {
+
         /// <summary>
         /// The db context.
         /// </summary>
         private readonly MyDbContext _dbContext;
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UnitOfWork"/> class.
@@ -29,11 +32,23 @@ namespace Data.RepositoryPatterns.Impl
         {
             _dbContext.SaveChanges();
         }
-        
+
+        public void CommitAsync()
+        {
+            _dbContext.SaveChangesAsync();
+        }
+
         public void Rollback()
         {
             _dbContext.Dispose();
         }
+
+        public void RollbackAsync()
+        {
+            _dbContext.DisposeAsync();
+        }
     
+    
+
     }
 }

@@ -12,20 +12,14 @@ namespace WebApi.Controllers
     [ApiController]
     public class AdresseController : ControllerBase
     {
-        private readonly IAdresseReadService _adresseReadService;
+        private readonly IMediator _mediator;
         private IMapper _mapper;
         
-        public AdresseController(IAdresseReadService adresseReadService, IMapper mapper)
+        public AdresseController(IMediator mediator, IMapper mapper)
         {
-            _adresseReadService = adresseReadService;
+            _mediator = mediator;
             _mapper = mapper;            
         }
 
-
-        [HttpGet]
-        public List<object> GetAll()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

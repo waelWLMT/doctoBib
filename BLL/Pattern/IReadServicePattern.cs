@@ -9,9 +9,22 @@ namespace BLL.Pattern
 {
     public interface IReadServicePattern<T>  where T : class
     {
+
+        #region Synchronous 
+
         T GetById(object id);
         List<T> GetAll();       
         List<T> GetAll(Expression <Func<T, bool>> predicate, params Expression<Func<T, object>>[] includes);
+
+        #endregion
+
+        #region Asynchronous 
+
+        Task<T> GetByIdAsync(object id);
+        Task<List<T>> GetAllAsync();
+        Task<List<T>> GetAllAsync(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includes);
+
+        #endregion
 
     }
 }
