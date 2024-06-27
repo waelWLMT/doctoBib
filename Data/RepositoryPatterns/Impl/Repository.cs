@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Core.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,12 @@ namespace Data.RepositoryPatterns.Impl
     /// <typeparam name="T"/>
     public class Repository<T> : IRepository<T> where T : class
     {
+
         /// <summary>
         /// The db context.
         /// </summary>
         protected readonly MyDbContext _dbContext;
+
         /// <summary>
         /// The db set.
         /// </summary>
@@ -34,42 +37,54 @@ namespace Data.RepositoryPatterns.Impl
 
 
         #region Synchronous
-        public void Insert(T entity)
+        public T Insert(T entity)
         {
             if (entity == null) throw new ArgumentNullException(nameof(entity) + "ne doit pas etre null");
             _dbSet.Add(entity);
+
+            return entity;
 
         }
         /// <summary>
         /// Inserts the all.
         /// </summary>
         /// <param name="entities">The entities.</param>
-        public void InsertAll(List<T> entities)
+        /// <returns><![CDATA[List<T>]]></returns>
+        public List<T> InsertAll(List<T> entities)
         {
             _dbSet.AddRange(entities);
+
+            return entities;
         }
-        public void Update(T entity)
+        public T Update(T entity)
         {
             if (entity == null) throw new ArgumentNullException(nameof(entity) + " ne doit pas etre null");
+
+            return entity;
         }
-        public void Delete(T entity)
+        public bool Delete(T entity)
         {
             if (entity == null)
                 throw new ArgumentNullException(nameof(entity) + "ne doit pas etre null");
 
             _dbSet.Remove(entity);
+
+            return true;
         }
         /// <summary>
-        /// Deletes the all.
+        /// Deletes all.
         /// </summary>
         /// <param name="entities">The entities.</param>
         /// <exception cref="ArgumentNullException"></exception>
-        public void DeleteAll(List<T> entities)
+        /// <returns>A bool</returns>
+        public bool DeleteAll(List<T> entities)
         {
             if (entities == null || !entities.Any())
                 throw new ArgumentNullException(nameof(entities) + "ne doit pas etre ni null ni vide");
 
-            _dbSet.RemoveRange(entities);            
+            _dbSet.RemoveRange(entities);
+
+            return true;
         }
 
         #endregion

@@ -9,11 +9,11 @@ namespace Data.RepositoryPatterns
     public interface IRepository<T> where T : class
     {
         #region Synchronous
-        void Insert(T entity);
-        void InsertAll(List<T> entities); 
-        void Delete(T entity);
-        void DeleteAll(List<T> entities);
-        void Update(T entity);
+        T Insert(T entity);
+        List<T> InsertAll(List<T> entities); 
+        bool Delete(T entity);
+        bool DeleteAll(List<T> entities);
+        T Update(T entity);
 
         #endregion
 

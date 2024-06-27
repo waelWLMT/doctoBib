@@ -17,7 +17,6 @@ namespace Data.RepositoryPatterns
 
         #endregion
 
-
         #region Asynchronous 
 
         Task<List<T>> GetAllAsync();
