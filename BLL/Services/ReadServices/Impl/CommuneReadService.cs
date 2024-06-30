@@ -54,13 +54,18 @@ namespace BLL.Services.ReadServices.Impl
         /// </summary>
         private void ConfigureMyHttpClient()
         {
+
             var baseUrl = _configuration.GetSection("geoApiGouv")?.Value?.ToString();
 
-            _httpClient.BaseAddress = new Uri(baseUrl);
+            if(_httpClient.BaseAddress == null) 
+                _httpClient.BaseAddress =  new Uri(baseUrl);
+            
+             
             _httpClient.Timeout = new TimeSpan(0, 0, 30);
             _httpClient.DefaultRequestHeaders.Clear();
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/xml", 0.9));
+
 
         }
 
@@ -95,7 +100,7 @@ namespace BLL.Services.ReadServices.Impl
 
             response.EnsureSuccessStatusCode();
 
-            return await response.Content.ReadAsStringAsync();            
+            return await response.Content.ReadAsStringAsync();
 
         }
 
@@ -105,7 +110,7 @@ namespace BLL.Services.ReadServices.Impl
         /// <param name="codeDepartement">The code departement.</param>
         /// <returns><![CDATA[Task<object>]]></returns>
         public async Task<object> GetCommuneByCodeDepartement(string codeDepartement)
-        {            
+        {
             var apiUrl = new StringBuilder("/departements/");
             apiUrl.Append(codeDepartement);
             apiUrl.Append("/communes");
@@ -123,17 +128,20 @@ namespace BLL.Services.ReadServices.Impl
         /// <returns><![CDATA[Task<object>]]></returns>
         public async Task<object> GetCommuneByEpciCode(string epciCode)
         {
+            
             var apiUrl = new StringBuilder("/epcis/");
             apiUrl.Append(epciCode);
             apiUrl.Append("/communes");
 
-            var response = _httpClient.GetAsync(apiUrl.ToString().Trim()).Result;
+            var response =  _httpClient.GetAsync(apiUrl.ToString().Trim()).Result;
             response.EnsureSuccessStatusCode();
 
-            return await response.Content.ReadAsStringAsync();
+            var result = await response.Content.ReadAsStringAsync();
+           
+            return result;
 
         }
-      
+
         #endregion
 
     }
